@@ -1,0 +1,16 @@
+id: t1570-lateral-tool-transfer-scp
+name: T1570 Lateral Tool Transfer Setup
+description: Creates recon tool and target account for T1570 lateral tool transfer exercise
+tactic: lateral-movement
+technique_id: T1570
+technique_name: Lateral Tool Transfer
+sub_technique: ""
+tag: "mitre"
+executors:
+  - name: sh
+    platform: linux
+    command: |
+      git clone https://github.com/hacktifytechnologies/Lateral-Movement /tmp/LM-challenges 2>/dev/null || git -C /tmp/LM-challenges pull --quiet
+      bash /tmp/LM-challenges/T1570-Lateral_Tool_Transfer_SCP/setup.sh
+    payloads: []
+    parsers: []
