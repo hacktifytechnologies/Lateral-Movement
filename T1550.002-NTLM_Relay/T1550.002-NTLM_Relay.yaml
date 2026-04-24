@@ -1,0 +1,16 @@
+id: t1550-002-ntlm-relay
+name: T1550.002 NTLM Relay Setup
+description: Disables SMB signing for NTLM relay attack exercise (T1550.002)
+tactic: lateral-movement
+technique_id: T1550
+technique_name: Use Alternate Authentication Material
+sub_technique: "Pass the Hash"
+tag: "mitre"
+executors:
+  - name: psh
+    platform: windows
+    command: |
+      if (-not (Test-Path "C:\Temp\LM-challenges")) { git clone https://github.com/hacktifytechnologies/Lateral-Movement "C:\Temp\LM-challenges" } else { git -C "C:\Temp\LM-challenges" pull --quiet }
+      powershell -ExecutionPolicy Bypass -File "C:\Temp\LM-challenges\T1550.002-NTLM_Relay\setup.ps1"
+    payloads: []
+    parsers: []
