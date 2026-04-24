@@ -1,0 +1,16 @@
+id: t1550-003-pass-the-ticket
+name: T1550.003 Pass the Ticket Setup
+description: Creates Kerberos ticket abuse scenario for Golden/Silver ticket exercise (T1550.003)
+tactic: lateral-movement
+technique_id: T1550
+technique_name: Use Alternate Authentication Material
+sub_technique: "Pass the Ticket"
+tag: "mitre"
+executors:
+  - name: psh
+    platform: windows
+    command: |
+      if (-not (Test-Path "C:\Temp\LM-challenges")) { git clone https://github.com/hacktifytechnologies/Lateral-Movement "C:\Temp\LM-challenges" } else { git -C "C:\Temp\LM-challenges" pull --quiet }
+      powershell -ExecutionPolicy Bypass -File "C:\Temp\LM-challenges\T1550.003-Pass_The_Ticket\setup.ps1"
+    payloads: []
+    parsers: []
