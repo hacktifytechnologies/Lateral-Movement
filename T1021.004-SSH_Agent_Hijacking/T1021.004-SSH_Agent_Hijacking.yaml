@@ -1,0 +1,16 @@
+id: t1021-004-ssh-agent-hijacking
+name: T1021.004 SSH Agent Hijacking Setup
+description: Creates SSH agent environment for T1021.004 agent hijacking lateral movement
+tactic: lateral-movement
+technique_id: T1021
+technique_name: Remote Services
+sub_technique: "SSH"
+tag: "mitre"
+executors:
+  - name: sh
+    platform: linux
+    command: |
+      git clone https://github.com/hacktifytechnologies/Lateral-Movement /tmp/LM-challenges 2>/dev/null || git -C /tmp/LM-challenges pull --quiet
+      bash /tmp/LM-challenges/T1021.004-SSH_Agent_Hijacking/setup.sh
+    payloads: []
+    parsers: []
