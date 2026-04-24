@@ -1,0 +1,16 @@
+id: t1570-lateral-tool-transfer-smb
+name: T1570 Lateral Tool Transfer SMB Setup
+description: Creates attacker tool for T1570 SMB-based lateral tool transfer exercise
+tactic: lateral-movement
+technique_id: T1570
+technique_name: Lateral Tool Transfer
+sub_technique: ""
+tag: "mitre"
+executors:
+  - name: psh
+    platform: windows
+    command: |
+      if (-not (Test-Path "C:\Temp\LM-challenges")) { git clone https://github.com/hacktifytechnologies/Lateral-Movement "C:\Temp\LM-challenges" } else { git -C "C:\Temp\LM-challenges" pull --quiet }
+      powershell -ExecutionPolicy Bypass -File "C:\Temp\LM-challenges\T1570-Lateral_Tool_Transfer_SMB\setup.ps1"
+    payloads: []
+    parsers: []
