@@ -1,0 +1,16 @@
+id: t1021-001-rdp-lateral-movement
+name: T1021.001 RDP Lateral Movement Setup
+description: Enables RDP and creates target account for T1021.001 lateral movement exercise
+tactic: lateral-movement
+technique_id: T1021
+technique_name: Remote Services
+sub_technique: "Remote Desktop Protocol"
+tag: "mitre"
+executors:
+  - name: psh
+    platform: windows
+    command: |
+      if (-not (Test-Path "C:\Temp\LM-challenges")) { git clone https://github.com/hacktifytechnologies/Lateral-Movement "C:\Temp\LM-challenges" } else { git -C "C:\Temp\LM-challenges" pull --quiet }
+      powershell -ExecutionPolicy Bypass -File "C:\Temp\LM-challenges\T1021.001-RDP_Lateral_Movement\setup.ps1"
+    payloads: []
+    parsers: []
