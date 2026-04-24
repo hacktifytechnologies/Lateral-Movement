@@ -1,0 +1,16 @@
+id: t1021-002-smb-brute-force
+name: T1021.002 SMB Brute Force Lateral Movement Setup
+description: Creates weak-password service account for SMB brute force lateral movement (T1021.002)
+tactic: lateral-movement
+technique_id: T1021
+technique_name: Remote Services
+sub_technique: "SMB/Windows Admin Shares"
+tag: "mitre"
+executors:
+  - name: psh
+    platform: windows
+    command: |
+      if (-not (Test-Path "C:\Temp\LM-challenges")) { git clone https://github.com/hacktifytechnologies/Lateral-Movement "C:\Temp\LM-challenges" } else { git -C "C:\Temp\LM-challenges" pull --quiet }
+      powershell -ExecutionPolicy Bypass -File "C:\Temp\LM-challenges\T1021.002-SMB_Brute_Force\setup.ps1"
+    payloads: []
+    parsers: []
