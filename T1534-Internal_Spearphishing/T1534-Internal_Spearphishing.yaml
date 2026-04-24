@@ -1,0 +1,16 @@
+id: t1534-internal-spearphishing
+name: T1534 Internal Spearphishing Setup
+description: Creates phishing email lure and malicious IT script for T1534 exercise
+tactic: lateral-movement
+technique_id: T1534
+technique_name: Internal Spearphishing
+sub_technique: ""
+tag: "mitre"
+executors:
+  - name: sh
+    platform: linux
+    command: |
+      git clone https://github.com/hacktifytechnologies/Lateral-Movement /tmp/LM-challenges 2>/dev/null || git -C /tmp/LM-challenges pull --quiet
+      bash /tmp/LM-challenges/T1534-Internal_Spearphishing/setup.sh
+    payloads: []
+    parsers: []
