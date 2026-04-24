@@ -1,0 +1,16 @@
+id: t1563-002-rdp-session-hijacking
+name: T1563.002 RDP Session Hijacking Setup
+description: Enables RDP and creates victim session for T1563.002 tscon hijack exercise
+tactic: lateral-movement
+technique_id: T1563
+technique_name: Remote Service Session Hijacking
+sub_technique: "RDP Hijacking"
+tag: "mitre"
+executors:
+  - name: psh
+    platform: windows
+    command: |
+      if (-not (Test-Path "C:\Temp\LM-challenges")) { git clone https://github.com/hacktifytechnologies/Lateral-Movement "C:\Temp\LM-challenges" } else { git -C "C:\Temp\LM-challenges" pull --quiet }
+      powershell -ExecutionPolicy Bypass -File "C:\Temp\LM-challenges\T1563.002-RDP_Session_Hijacking\setup.ps1"
+    payloads: []
+    parsers: []
