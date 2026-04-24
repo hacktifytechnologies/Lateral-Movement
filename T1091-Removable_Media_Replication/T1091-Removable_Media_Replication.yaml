@@ -1,0 +1,16 @@
+id: t1091-removable-media-replication
+name: T1091 Removable Media Replication Setup
+description: Creates simulated USB with autorun.inf and malicious LNK for T1091 exercise
+tactic: lateral-movement
+technique_id: T1091
+technique_name: Replication Through Removable Media
+sub_technique: ""
+tag: "mitre"
+executors:
+  - name: psh
+    platform: windows
+    command: |
+      if (-not (Test-Path "C:\Temp\LM-challenges")) { git clone https://github.com/hacktifytechnologies/Lateral-Movement "C:\Temp\LM-challenges" } else { git -C "C:\Temp\LM-challenges" pull --quiet }
+      powershell -ExecutionPolicy Bypass -File "C:\Temp\LM-challenges\T1091-Removable_Media_Replication\setup.ps1"
+    payloads: []
+    parsers: []
